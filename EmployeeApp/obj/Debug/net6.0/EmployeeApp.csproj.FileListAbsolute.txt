@@ -1,8 +1,5 @@
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\appsettings.Development.json
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\appsettings.json
-D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\app.json
-D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\package-lock.json
-D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\package.json
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\EmployeeApp.exe
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\EmployeeApp.deps.json
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\EmployeeApp.runtimeconfig.json
@@ -44,3 +41,6 @@ D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\obj\Debug\net6.0\refint\Em
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\obj\Debug\net6.0\EmployeeApp.pdb
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\obj\Debug\net6.0\EmployeeApp.genruntimeconfig.cache
 D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\obj\Debug\net6.0\ref\EmployeeApp.dll
+D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\app.json
+D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\package-lock.json
+D:\Tharindu\Documents\project\EmployeeApp\EmployeeApp\bin\Debug\net6.0\clientapp\package.json
