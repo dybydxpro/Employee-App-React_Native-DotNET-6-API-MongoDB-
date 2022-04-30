@@ -8,6 +8,15 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("D
 builder.Services.AddSingleton<EmployeeServices>();
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+                builder =>
+                {
+                    builder.WithOrigins("*")
+                            .AllowAnyMethod().AllowAnyHeader();
+                });
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -20,6 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("MyPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
