@@ -37,6 +37,7 @@ namespace EmployeeApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> Post(Employee employee)
         {
+            employee.Id = "";
             await _employeeServices.CreateAsync(employee);
             return CreatedAtAction(nameof(Get), new { id = employee.Id }, employee);
         }

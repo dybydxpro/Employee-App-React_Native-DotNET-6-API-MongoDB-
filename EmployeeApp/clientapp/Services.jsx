@@ -5,21 +5,21 @@ class Services{
         return http.get("/Employee")
     }
 
-    /*getOneEmployee(id){
-        return http.get("/Employee")
+    getOneEmployee(id){
+        return http.get(`/Employee/${id}`)
     }
 
-    postEmployee(){
-        return http.get("/Employee")
+    postEmployee(data){
+        return http.post("/Employee", data)
     }
 
-    putEmployee(){
-        return http.get("/Employee")
+    putEmployee(data){
+        return http.put("/Employee", data)
     }
 
-    deleteEmployee(){
-        return http.get("/Employee")
-    }*/
+    deleteEmployee(id){
+        return http.delete(`/Employee/${id}`)
+    }
 }
 
 export default new Services();

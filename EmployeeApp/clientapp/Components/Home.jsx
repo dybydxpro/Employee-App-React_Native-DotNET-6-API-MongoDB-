@@ -29,6 +29,10 @@ export default function Home(){
     }]);
 
     useEffect(() => {
+        readAllData();
+    }, []);
+
+    function readAllData(){
         Services.getEmployee()
         .then(({data}) => {
             setData(data);
@@ -37,13 +41,34 @@ export default function Home(){
         .catch(({response}) =>{
             console.log(response);
         })
-    }, []);
+    }
+
+    function openNode(id){
+        window.location.replace("/Read/"+id);
+    }
+
+    function editNode(id){
+        window.location.replace("/Edit/"+id);
+    }
+
+    function deleteNode(id){
+        if(window.confirm("Confirm to delete data.") == true){
+            Services.deleteEmployee(id)
+            .then(({data}) => {
+                console.log(data);
+                readAllData();
+            })
+            .catch(({response}) =>{
+                console.log(response);
+            })
+        }
+    }
 
     return(
-        <View>
+        <View sx={{backgroundColor: blue[200]}}>
             <NavBar/>
-            <Container sx={{ mt: 4, mb: 1}} >
-            <Typography variant="h4" component="h4" align="center" sx={{color: blue[900], mb: 2}}>Employee Table</Typography>
+            <Container sx={{ mt: 4, mb: 1}}>
+                <Typography variant="h4" component="h4" align="center" sx={{color: blue[900], mb: 2}}>Employee Table</Typography>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
@@ -63,9 +88,9 @@ export default function Home(){
                                     <TableCell align="left">{row.email}</TableCell>
                                     <TableCell align="center">{row.contact}</TableCell>
                                     <TableCell align="center" sx={{ width: "330px"}}>
-                                        <Button variant="contained" sx={{ backgroundColor: blue[500], '&:hover': { backgroundColor: blue[700]} }}><OpenInNewIcon/>&nbsp;Open</Button>&nbsp;
-                                        <Button variant="contained" sx={{ backgroundColor: orange[500], '&:hover': { backgroundColor: orange[700]} }}><EditIcon/>Edit&nbsp;</Button>&nbsp;
-                                        <Button variant="contained" sx={{ backgroundColor: red[500], '&:hover': { backgroundColor: red[700]} }}><DeleteIcon/>&nbsp;Delete</Button>
+                                        <Button variant="contained" sx={{ backgroundColor: blue[500], '&:hover': { backgroundColor: blue[700]} }} onClick={() => openNode(row.id)}><OpenInNewIcon/>&nbsp;Open</Button>&nbsp;
+                                        <Button variant="contained" sx={{ backgroundColor: orange[500], '&:hover': { backgroundColor: orange[700]} }} onClick={() => editNode(row.id)}><EditIcon/>Edit&nbsp;</Button>&nbsp;
+                                        <Button variant="contained" sx={{ backgroundColor: red[500], '&:hover': { backgroundColor: red[700]} }} onClick={() => deleteNode(row.id)}><DeleteIcon/>&nbsp;Delete</Button>
                                     </TableCell>
                                 </TableRow>
                             )}
