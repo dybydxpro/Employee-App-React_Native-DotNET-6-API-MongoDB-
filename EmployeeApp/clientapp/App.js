@@ -1,23 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
+import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './Components/Home';
 import Add from './Components/Add';
 import Edit from './Components/Edit';
 import Read from './Components/Read';
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/Add" element={<Add/>}/>
-          <Route path="/Edit/:id" element={<Edit/>}/>
-          <Route path="/Read/:id" element={<Read/>}/>
-        </Routes>
-      </BrowserRouter>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Group>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Add" component={Add} />
+            <Stack.Screen name="Edit" component={Edit} />
+            <Stack.Screen name="Read" component={Read} />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }

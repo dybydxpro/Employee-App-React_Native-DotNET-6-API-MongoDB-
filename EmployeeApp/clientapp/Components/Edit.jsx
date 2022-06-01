@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Services from './../Services';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import NavBar from './NavBar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -12,7 +13,9 @@ import Container from '@mui/material/Container';
 import { blue } from '@mui/material/colors';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
-export default function Edit(){
+export default function Edit({route}){
+    const id = route.params;
+    const navigation = useNavigation();
     const [data, setData] = useState({
         "id": "",
         "name": "",
@@ -22,10 +25,6 @@ export default function Edit(){
     });
 
     useEffect(() => {
-        const pathname = window.location.pathname;
-        const words = pathname.split('/');
-        var id = words[2];
-
         Services.getOneEmployee(id)
         .then(({data}) => {
             setData(data);
@@ -65,12 +64,12 @@ export default function Edit(){
 
     function update(){
         if(validate() == true){
-            if(window.confirm("Confirm to delete data.") == true){
+            if(window.confirm("Confirm to update data.") == true){
                 Services.putEmployee(data)
                 .then(({data}) => {
                     setData(data);
                     console.log(data);
-                    window.location.replace("/");
+                    navigation.navigate("Home");
                 })
                 .catch(({response}) =>{
                     console.log(response);

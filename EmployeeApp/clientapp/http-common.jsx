@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "react-native-axios";
 
 export default axios.create({
     baseURL:"https://localhost:44367/api",

@@ -10,7 +10,8 @@ import Input from '@mui/material/Input';
 import Container from '@mui/material/Container';
 import { blue } from '@mui/material/colors';
 
-export default function Read(){
+export default function Read({route}){
+    const id = route.params;
     const [data, setData] = useState({
         "id": "",
         "name": "",
@@ -20,10 +21,7 @@ export default function Read(){
     });
 
     useEffect(() => {
-        const pathname = window.location.pathname;
-        const words = pathname.split('/');
-        var id = words[2];
-
+        console.log(id);
         Services.getOneEmployee(id)
         .then(({data}) => {
             setData(data);

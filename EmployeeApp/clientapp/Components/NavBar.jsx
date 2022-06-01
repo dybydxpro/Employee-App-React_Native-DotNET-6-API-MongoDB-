@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +10,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home(){
-    const pages = ['Home', 'Add new'];
+    const pages = [
+        { "name": "Home", "route": "Home" },
+        { "name": "Add new", "route": "Add"}];
+    const navigation = useNavigation();
 
     const ResponsiveAppBar = () => {
         const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -25,15 +28,6 @@ export default function Home(){
         const handleCloseNavMenu = () => {
             setAnchorElNav(null);
         };
-
-        const navigateWith = (location) => {
-            if (location == "Add new"){
-                window.location.replace("/Add");
-            }
-            else if(location == "Home"){
-                window.location.replace("/");
-            }
-        }
 
         return (
             <AppBar position="static">
@@ -78,9 +72,9 @@ export default function Home(){
                                 }}
                             >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">
-                                        <Link to={`${page}`}>{page}</Link>
+                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" onClick={() => { navigation.navigate(page.route) }}>
+                                        {page.name}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -97,11 +91,11 @@ export default function Home(){
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                             <Button
-                                key={page}
-                                onClick={() => {handleCloseNavMenu, navigateWith(page)}}
+                                key={page.name}
+                                onClick={() => {handleCloseNavMenu, navigation.navigate(page.route)}}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {page.name}
                             </Button>
                             ))}
                         </Box>

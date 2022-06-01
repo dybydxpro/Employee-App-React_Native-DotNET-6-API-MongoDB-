@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Services from './../Services';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import NavBar from './NavBar';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -20,6 +21,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Home(){
+    const navigation = useNavigation();
     const [data, setData] = useState([{
         "id": "",
         "name": "",
@@ -41,14 +43,6 @@ export default function Home(){
         .catch(({response}) =>{
             console.log(response);
         })
-    }
-
-    function openNode(id){
-        window.location.replace("/Read/"+id);
-    }
-
-    function editNode(id){
-        window.location.replace("/Edit/"+id);
     }
 
     function deleteNode(id){
@@ -88,8 +82,8 @@ export default function Home(){
                                     <TableCell align="left">{row.email}</TableCell>
                                     <TableCell align="center">{row.contact}</TableCell>
                                     <TableCell align="center" sx={{ width: "330px"}}>
-                                        <Button variant="contained" sx={{ backgroundColor: blue[500], '&:hover': { backgroundColor: blue[700]} }} onClick={() => openNode(row.id)}><OpenInNewIcon/>&nbsp;Open</Button>&nbsp;
-                                        <Button variant="contained" sx={{ backgroundColor: orange[500], '&:hover': { backgroundColor: orange[700]} }} onClick={() => editNode(row.id)}><EditIcon/>Edit&nbsp;</Button>&nbsp;
+                                        <Button variant="contained" sx={{ backgroundColor: blue[500], '&:hover': { backgroundColor: blue[700]} }} onClick={() => navigation.navigate("Read", row.id)}><OpenInNewIcon/>&nbsp;Open</Button>&nbsp;
+                                        <Button variant="contained" sx={{ backgroundColor: orange[500], '&:hover': { backgroundColor: orange[700]} }} onClick={() => navigation.navigate("Edit", row.id)}><EditIcon/>Edit&nbsp;</Button>&nbsp;
                                         <Button variant="contained" sx={{ backgroundColor: red[500], '&:hover': { backgroundColor: red[700]} }} onClick={() => deleteNode(row.id)}><DeleteIcon/>&nbsp;Delete</Button>
                                     </TableCell>
                                 </TableRow>

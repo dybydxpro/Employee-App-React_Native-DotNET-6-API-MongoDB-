@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Services from './../Services';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import NavBar from './NavBar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -13,6 +14,7 @@ import { blue } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export default function Add(){
+    const navigation = useNavigation();
     const [data, setData] = useState({
         "id": "0",
         "name": "",
@@ -54,7 +56,7 @@ export default function Add(){
             .then(({data}) => {
                 setData(data);
                 console.log(data);
-                window.location.replace("/");
+                navigation.navigate("Home");
             })
             .catch(({response}) =>{
                 console.log(response);
